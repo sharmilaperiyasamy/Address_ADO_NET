@@ -15,6 +15,9 @@ while (choice != 0)
         case 3:
             add.updateDatabase();
             break;
+        case 4:
+            add.DeletePerson();
+            break;
         default:
             Console.WriteLine("Enter the valid choice : ");
             break;

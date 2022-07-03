@@ -97,7 +97,7 @@ namespace Address_Book_ADO_NET
                 connection.Close();
             }
         }
-        //uc3 update record in database
+        //uc4 update record in database
         public void updateDatabase()
         {
             SqlConnection connection = new SqlConnection(connectionString);
@@ -119,6 +119,22 @@ namespace Address_Book_ADO_NET
             catch (FormatException)
             {
                 Console.WriteLine("---------------------------\nError:Records are not updated.\n------------------------------");
+            }
+        }
+        //uc5 delete the person based on name from the database
+        public void DeletePerson()
+        {
+            SqlConnection connection = new SqlConnection(connectionString);
+            using (connection)
+            {
+                connection.Open();
+                Console.WriteLine("Enter name of person to  delete from records:");
+                string FirstName = Console.ReadLine();
+                string query = "delete from Address_Book where FirstName='" + FirstName + "'";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.ExecuteNonQuery();
+                Console.WriteLine("Records are deleted successfully.");
+                connection.Close();
             }
         }
     }
