@@ -97,5 +97,29 @@ namespace Address_Book_ADO_NET
                 connection.Close();
             }
         }
+        //uc3 update record in database
+        public void updateDatabase()
+        {
+            SqlConnection connection = new SqlConnection(connectionString);
+            try
+            {
+                using (connection)
+                {
+                    Console.WriteLine("Enter the name of the person to update the contact : ");
+                    string Firstname = Console.ReadLine();
+                    Console.WriteLine("Enter the contact to update : ");
+                    string Phone_no = Console.ReadLine();
+                    connection.Open();
+                    string query = "update Address_book set phone_no = " + Phone_no + " where FirstName = '" + Firstname + "'";
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.ExecuteNonQuery();
+                    Console.WriteLine("Records updated successfully.");
+                }
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("---------------------------\nError:Records are not updated.\n------------------------------");
+            }
+        }
     }
 }

@@ -12,6 +12,9 @@ while (choice != 0)
         case 2:
             add.createRecord();
             break;
+        case 3:
+            add.updateDatabase();
+            break;
         default:
             Console.WriteLine("Enter the valid choice : ");
             break;
