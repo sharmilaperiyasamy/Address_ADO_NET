@@ -50,5 +50,52 @@ namespace Address_Book_ADO_NET
                 connection.Close();
             }
         }
+
+        //uc3 creating record in the database
+
+        public void createRecord()
+        {
+            SqlConnection connection = new SqlConnection(connectionString);
+            using (connection)
+            {
+                connection.Open();
+                Address_Book_ADO_NET.Book_Definition detail = new Address_Book_ADO_NET.Book_Definition();
+                Console.WriteLine("Enter the First name : ");
+                detail.FirstName = Console.ReadLine();
+                Console.WriteLine("Enter the Last name : ");
+                detail.LastName = Console.ReadLine();
+                Console.WriteLine("Enter the Address : ");
+                detail.Address = Console.ReadLine();
+                Console.WriteLine("Enter the City : ");
+                detail.City = Console.ReadLine();
+                Console.WriteLine("Enter the State : ");
+                detail.State = Console.ReadLine();
+                Console.WriteLine("Enter the Zip code : ");
+                detail.Zip = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Enter the phone number : ");
+                detail.Phone_no = Console.ReadLine();
+                Console.WriteLine("Enter the email : ");
+                detail.Email = Console.ReadLine();
+                Console.WriteLine("Enter the name : ");
+                detail.name = Console.ReadLine();
+                Console.WriteLine("Enter the person type : ");
+                detail.Persontype = Console.ReadLine();
+                SqlCommand command = new SqlCommand("StoreProcedureAddressBook", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@FirstName", detail.FirstName);
+                command.Parameters.AddWithValue("@LastName", detail.LastName);
+                command.Parameters.AddWithValue("@Address", detail.Address);
+                command.Parameters.AddWithValue("@City", detail.City);
+                command.Parameters.AddWithValue("@State", detail.State);
+                command.Parameters.AddWithValue("@Zip", detail.Zip);
+                command.Parameters.AddWithValue("@Phone_no", detail.Phone_no);
+                command.Parameters.AddWithValue("@Email", detail.Email);
+                command.Parameters.AddWithValue("@name", detail.name);
+                command.Parameters.AddWithValue("@Type", detail.Persontype);
+                command.ExecuteNonQuery();
+                Console.WriteLine("Records are created successfully.");
+                connection.Close();
+            }
+        }
     }
 }

@@ -9,6 +9,9 @@ while (choice != 0)
         case 1:
             add.getDataFromDB();
             break;
+        case 2:
+            add.createRecord();
+            break;
         default:
             Console.WriteLine("Enter the valid choice : ");
             break;
